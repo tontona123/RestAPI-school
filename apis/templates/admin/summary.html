@@ -1,0 +1,77 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<h1>Summary</h1>
+
+<h2>Schools</h2>
+<table border="1" class="table">
+    <tr>
+        <th>Name</th>
+        <th>Abbreviation</th>
+        <th>Address</th>
+    </tr>
+    {% for school in schools %}
+    <tr>
+        <td>{{ school.name }}</td>
+        <td>{{ school.abbreviation }}</td>
+        <td>{{ school.address }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>Classrooms</h2>
+<table border="1" class="table">
+    <tr>
+        <th>Year</th>
+        <th>Section</th>
+        <th>School</th>
+    </tr>
+    {% for classroom in classrooms %}
+    <tr>
+        <td>{{ classroom.year }}</td>
+        <td>{{ classroom.section }}</td>
+        <td>{{ classroom.school.name }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>Students</h2>
+<table border="1" class="table">
+    <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Gender</th>
+        <th>Classroom</th>
+    </tr>
+    {% for student in students %}
+    <tr>
+        <td>{{ student.firstname }}</td>
+        <td>{{ student.lastname }}</td>
+        <td>{{ student.gender }}</td>
+        <td>{{ student.classroom.school.name }} - {{ student.classroom.section }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>Teachers</h2>
+<table border="1" class="table">
+    <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Gender</th>
+        <th>Classrooms</th>
+    </tr>
+    {% for teacher in teachers %}
+    <tr>
+        <td>{{ teacher.firstname }}</td>
+        <td>{{ teacher.lastname }}</td>
+        <td>{{ teacher.gender }}</td>
+        <td>
+            {% for classroom in teacher.classrooms.all %}
+            {{ classroom.school.name }} - {{ classroom.section }} <br>
+            {% endfor %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

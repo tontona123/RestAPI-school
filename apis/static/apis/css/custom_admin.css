@@ -1,0 +1,9 @@
+
+/* custom_admin.css */
+body {
+    background-color: #f4f6f9;  /* เปลี่ยนสีพื้นหลังของ Django Admin */
+}
+
+table#result_list {
+    font-size: 14px;
+}
